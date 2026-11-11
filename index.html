@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#173d32">
+  <meta name="description" content="Offline wetland plant indicator lookup for USACE and SFWMD lists.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>Wetland Plant Lookup</title>
+</head>
+<body>
+  <header>
+    <div class="eyebrow">FIELD REFERENCE</div>
+    <h1>Wetland Plant Lookup</h1>
+    <p>Search botanical or common names and check the source-specific wetland status.</p>
+  </header>
+  <main>
+    <section class="controls">
+      <label for="source">Plant list</label>
+      <select id="source">
+        <option value="usace">USACE Plant List</option>
+        <option value="sfwmd">SFWMD Vegetative Index (FDEP Manual)</option>
+      </select>
+      <label for="search">Search by scientific or common name</label>
+      <input id="search" type="search" placeholder="e.g., red maple or Acer rubrum" autocomplete="off">
+      <div class="filterrow">
+        <div>
+          <label for="rating">Indicator status</label>
+          <select id="rating">
+            <option value="all">All statuses</option>
+            <option>OBL</option>
+            <option>FACW</option>
+            <option>FAC</option>
+            <option>FACU</option>
+            <option>UPL</option>
+            <option>U</option>
+          </select>
+        </div>
+        <div class="count" id="count" aria-live="polite">Loading list…</div>
+      </div>
+    </section>
+
+    <section class="sourceinfo" id="sourceinfo"></section>
+
+
+
+    <section id="results" aria-live="polite"></section>
+  </main>
+  <footer>
+    <p>Use the selected source’s rating as printed.</p>
+    <p>Do not assume ratings from different lists are interchangeable.</p>
+    <p id="offline">Offline-ready after the first successful visit.</p>
+  </footer>
+  <script src="app.js" defer></script>
+</body>
+</html>
