@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#173d32">
+<meta name="description" content="Offline wetland plant indicator lookup for USACE and SFWMD lists.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+<title>Wetland Plant Lookup</title>
+</head>
+<body>
+<header>
+  <div class="eyebrow">FIELD REFERENCE</div>
+  <h1>Wetland Plant Lookup</h1>
+  <p>Search botanical or common names and check the source-specific wetland status.</p>
+</header>
+<main>
+  <section class="controls">
+    <label for="source">Plant list</label>
+    <select id="source">
+      <option value="usace">USACE Plant List</option>
+      <option value="sfwmd">SFWMD Vegetative Index (FDEP Manual)</option>
+    </select>
+    <label for="search">Search by scientific or common name</label>
+    <input id="search" type="search" placeholder="e.g., red maple or Acer rubrum" autocomplete="off">
+    <div class="filterrow">
+      <div>
+        <label for="rating">Indicator status</label>
+        <select id="rating">
+          <option value="all">All statuses</option>
+          <option>OBL</option><option>FACW</option><option>FAC</option>
+          <option>FACU</option><option>UPL</option><option>U</option>
+        </select>
+      </div>
+      <div class="count" id="count" aria-live="polite">Loading list…</div>
+    </div>
+  </section>
+  <section class="sourceinfo" id="sourceinfo"></section>
+
+  <details class="status-guide">
+    <summary>What do the status codes mean?</summary>
+    <div class="status-guide-content">
+      <p class="status-guide-intro">These indicator categories describe the frequency with which a plant occurs in wetlands versus non-wetlands.</p>
+      <div class="status-guide-row"><span class="rating OBL">OBL</span><div><strong>Obligate Wetland</strong><p>Almost always occurs in wetlands.</p></div></div>
+      <div class="status-guide-row"><span class="rating FACW">FACW</span><div><strong>Facultative Wetland</strong><p>Usually occurs in wetlands, but may occur in non-wetlands.</p></div></div>
+      <div class="status-guide-row"><span class="rating FAC">FAC</span><div><strong>Facultative</strong><p>Occurs in wetlands and non-wetlands.</p></div></div>
+      <div class="status-guide-row"><span class="rating FACU">FACU</span><div><strong>Facultative Upland</strong><p>Usually occurs in non-wetlands, but may occur in wetlands.</p></div></div>
+      <div class="status-guide-row"><span class="rating UPL">UPL</span><div><strong>Obligate Upland</strong><p>Almost always occurs in non-wetlands.</p></div></div>
+      <p class="status-guide-note"><strong>U:</strong> The letter U appears in the supplied source data. It is not one of the five standard indicator categories shown above; its source-specific meaning is not inferred here.</p>
+      <p class="status-guide-note">Indicator status is one piece of vegetation evidence. It does not determine whether a site is a wetland by itself. Consult the applicable regional list and regulatory guidance for project decisions.</p>
+    </div>
+  </details>
+
+  <section id="results" aria-live="polite"></section>
+</main>
+<footer>
+  <p>Use the selected source’s rating as printed.</p>
+  <p>USACE and SFWMD ratings are kept separate and should not be treated as interchangeable.</p>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
